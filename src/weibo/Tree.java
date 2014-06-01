@@ -14,7 +14,8 @@ import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class Tree extends JFrame {
+public class Tree{
+//extends JFrame {
 
 	private HashMap<Long, Node> nodes;
 	private HashMap<Long, Long> uids;
@@ -26,17 +27,17 @@ public class Tree extends JFrame {
 	public int lineCount=0;
 
 	public Tree(String name) {
-		super("Draw A Circle In JFrame");  
+//		super("Draw A Circle In JFrame");  
 		 
 		nodes = new HashMap<Long, Node>();
 		uids = new HashMap<Long, Long>();
 		
 		  
 		 //Set default close operation for JFrame  
-		 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+//		 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
 		  
 		 //Set JFrame size  
-		 setSize(1000,800);  
+//		 setSize(1000,800);  
 		  
 		 //Make JFrame visible   
 		 //setVisible(true); 
@@ -54,10 +55,10 @@ public class Tree extends JFrame {
 		
 		  
 		 //Set default close operation for JFrame  
-		 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+//		 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
 		  
 		 //Set JFrame size  
-		 setSize(1000,800);  
+//		 setSize(1000,800);  
 		  
 		 //Make JFrame visible   
 		 //setVisible(true); 
@@ -66,17 +67,17 @@ public class Tree extends JFrame {
 
 	}
 	public Tree() {
-		super("Draw A Circle In JFrame");  
+//		super("Draw A Circle In JFrame");  
 		 
 		nodes = new HashMap<Long, Node>();
 		uids = new HashMap<Long, Long>();
 		
 		  
 		 //Set default close operation for JFrame  
-		 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+//		 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
 		  
 		 //Set JFrame size  
-		 setSize(1000,800);  
+//		 setSize(1000,800);  
 		  
 		 //Make JFrame visible   
 		 //setVisible(true); 
@@ -86,17 +87,17 @@ public class Tree extends JFrame {
 	public Tree(String name1, int time) {
 		// TODO Auto-generated constructor stub
 
-		super("Draw A Circle In JFrame");  
+//		super("Draw A Circle In JFrame");  
 		 
 		nodes = new HashMap<Long, Node>();
 		uids = new HashMap<Long, Long>();
 		
 		  
 		 //Set default close operation for JFrame  
-		 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+//		 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
 		  
 		 //Set JFrame size  
-		 setSize(1000,800);  
+//		 setSize(1000,800);  
 		  
 		 //Make JFrame visible   
 		 //setVisible(true); 
@@ -235,6 +236,7 @@ public class Tree extends JFrame {
 			draw(g,n,count);
 	}
 	
+	/*
 	public void show2()
 	{
 		this.revalidate();
@@ -256,7 +258,7 @@ public class Tree extends JFrame {
 		draw(g,root,count);
 	
 	}  
-
+*/
 	
 	public class Node extends Object {
 		long uid;
