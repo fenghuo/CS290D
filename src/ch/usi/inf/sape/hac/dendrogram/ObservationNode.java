@@ -45,7 +45,7 @@ public final class ObservationNode implements DendrogramNode {
 	@Override
 	public String toString()
 	{
-		return this.observation+"";
+		return this.observation+" -- "+weibo.Clustering.names[this.observation];
 	}
 
 }

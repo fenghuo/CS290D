@@ -30,6 +30,10 @@ public final class Dendrogram {
         return root;
     }
 
+    public void dump2(){
+    	dumpNode2("  ", root);
+    }
+    
     public void dump() {
         dumpNode("  ", root);
     }
@@ -43,6 +47,17 @@ public final class Dendrogram {
             System.out.println(indent+"Merge:");
             dumpNode(indent+"  ", ((MergeNode)node).getLeft());
             dumpNode(indent+"  ", ((MergeNode)node).getRight());
+        }
+    }
+
+    private void dumpNode2(final String indent, final DendrogramNode node) {
+        if (node==null) {
+            System.out.println(indent+"<null>");
+        } else if (node instanceof ObservationNode) {
+            System.out.println(indent+node);
+        } else if (node instanceof MergeNode) {
+            dumpNode2(indent+"  ", ((MergeNode)node).getLeft());
+            dumpNode2(indent+"  ", ((MergeNode)node).getRight());
         }
     }
 }
