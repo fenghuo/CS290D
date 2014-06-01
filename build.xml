@@ -48,14 +48,8 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="Weibo (1)">
-        <java classname="weibo.Weibo" failonerror="true" fork="yes">
-            <classpath refid="CS290D.classpath"/>
-        </java>
-    </target>
     <target name="Weibo">
-        <java classname="Weibo" failonerror="true" fork="yes">
-            <jvmarg line="-Xms512M&#13;&#10;-Xmx2048M"/>
+        <java classname="weibo.Weibo" failonerror="true" fork="yes">
             <classpath refid="CS290D.classpath"/>
         </java>
     </target>

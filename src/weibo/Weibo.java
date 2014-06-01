@@ -15,10 +15,10 @@ public class Weibo {
 		
 		utils.Data data=null;
 		
-//		int[][]dis=Engine.getPairDistance(utils.path, 100);
-//		data=Engine.getPairDistance(utils.path, 100,60*60,false);
+		int[][]dis=Engine.getPairDistance(utils.path, 100);
+		data=Engine.getPairDistance(utils.path, 100,60*60,false);
 		
-//		utils.dump(data, "2.2000");
+		utils.dump(data, "2.2000");
 		
 		data=utils.readDump("1.100");
 		
