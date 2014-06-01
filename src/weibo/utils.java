@@ -32,8 +32,8 @@ public class utils {
 	
 
 //	public final static String path = "E:\\Tech\\Java\\WorkSpace\\CS290D\\weiboevents\\weiboevents\\";
-//	public final static String path = "E:\\Download\\weiboevents-trailer-json\\";
-	public final static String path = "/home/tianjiu/cs290dweiboevents/crawl-20140531/";
+	public final static String path = "E:\\Download\\weiboevents-trailer-json\\";
+//	public final static String path = "/home/tianjiu/cs290dweiboevents/crawl-20140531/";
 
 	public static void loadJson(Tree t,File file,int time) {
 		Tree tree = t;
@@ -155,6 +155,43 @@ public class utils {
 				write.println(fname[i].substring(0,fname[i].indexOf(".")));
 			write.close();
 		
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+
+	public static void save(Data output,String name)
+	{
+		int[][]data=output.data;
+		String[] fname=output.name;
+		
+		try {
+			PrintWriter write= new PrintWriter(new BufferedWriter(new FileWriter(new File(name+".name"))));
+
+			for(int i=0;i<data.length;i++)
+				write.println(fname[i].substring(0,fname[i].indexOf(".")));
+			write.close();
+		
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			PrintWriter write= new PrintWriter(new BufferedWriter(new FileWriter(new File(name+".distance"))));
+
+			for(int[]d1:data)
+			{
+				for(int d:d1)
+					write.print(d+"\t");
+				write.println();
+			}
+		
+			write.close();
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

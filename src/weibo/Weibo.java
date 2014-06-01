@@ -11,16 +11,22 @@ public class Weibo {
 			
 		//Engine.getDistance(100, "3705342694877442.msgpack", "3705342694877442.msgpack");
 		
-		Engine.Max=2000;
+		Engine.Max=20;
+		int treeSize=100;
+		int timeLimit=60*60;
+		boolean ignore=false;
+		boolean isSample=false;
 		
 		utils.Data data=null;
 		
-		int[][]dis=Engine.getPairDistance(utils.path, 100);
-		data=Engine.getPairDistance(utils.path, 100,60*60,false);
+		//int[][]dis=Engine.getPairDistance(utils.path, 100);
+		data=Engine.getPairDistance(utils.path, treeSize,timeLimit,ignore,isSample);
 		
-		utils.dump(data, "2.2000");
+		//utils.dump(data, "2.2000");
 		
-		data=utils.readDump("1.100");
+		//data=utils.readDump("1.100");
+		
+		utils.save(data,"test");
 		
 		utils.print(data.data);
 	
