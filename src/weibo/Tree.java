@@ -47,7 +47,7 @@ public class Tree extends JFrame {
 	
 
 	public Tree(File file,int time) {
-		super("Draw A Circle In JFrame");  
+		//super("Draw A Circle In JFrame");  
 		 
 		nodes = new HashMap<Long, Node>();
 		uids = new HashMap<Long, Long>();
