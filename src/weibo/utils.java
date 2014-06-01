@@ -198,6 +198,32 @@ public class utils {
 		}
 		
 	}
+	
+
+	public static Data readSave(String name)
+	{
+		int[][]data=null;
+		String[]names=null;
+		try {
+			Scanner inName = new Scanner(new File(name+".name"));
+			Scanner inDis = new Scanner(new File(name+".distance"));
+			int n=3167;
+			data=new int[n][n];
+			names=new String[n];
+			for(int i=0;i<n;i++)
+				for(int j=0;j<n;j++)
+					data[i][j]=inDis.nextInt();
+			for(int i=0;i<n;i++)
+				names[i]=inName.nextLine().trim();
+			inName.close();
+			inDis.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new Data(data,names);
+		
+	}
 
 	public static Data readDump(String name)
 	{
