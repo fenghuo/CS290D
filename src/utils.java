@@ -1,13 +1,18 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Scanner;
 import java.util.Vector;
 
 import org.json.simple.JSONArray;
@@ -126,6 +131,53 @@ public class utils {
 		data[2] = Long.parseLong(line.get(keys.get("t")).toString());
 		data[3] = Long.parseLong(line.get(keys.get("id")).toString());
 		return data;
+	}
+	
+	public static void dump(int[][]data,String name)
+	{
+		try {
+			PrintWriter write= new PrintWriter(new BufferedWriter(new FileWriter(new File(name+".dump"))));
+			write.println(data.length);
+			for(int[]d1:data)
+			{
+				for(int d:d1)
+					write.print(d+"\t");
+				write.println();
+			}
+			write.close();
+		
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	public static int[][] readDump(String name)
+	{
+		int[][]data=null;
+		try {
+			Scanner in = new Scanner(new File(name+".dump"));
+			int n=in.nextInt();
+			data=new int[n][n];
+			for(int i=0;i<n;i++)
+				for(int j=0;j<n;j++)
+					data[i][j]=in.nextInt();
+			in.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return data;
+	}
+	
+	public static void print(int[][]dis){
+		for(int i=0;i<dis.length;i++)
+		{
+			for(int j=0;j<dis.length;j++)
+				System.out.print(dis[i][j]+"\t");
+			System.out.println();
+		}
 	}
 	
 	public static class Statistics 

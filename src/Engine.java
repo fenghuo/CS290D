@@ -9,7 +9,7 @@ public class Engine {
 	public static Tree tree2=null;
 	public static Tree stree1=null;
 	public static Tree stree2=null;
-	public static int Max=2000;
+	public static int Max=1000;
 	
 	public static int getDistance(int n,String name1,String name2)
 	{
@@ -41,6 +41,7 @@ public class Engine {
 		Integer[] s2=stree2.serial();
 		
 		return (Distance.edit(s1, s2));
+		//return Distance.LCS(s1, s2);
 	}
 	
 	public static void getDistanceMultiple(int times,int n,String name1,String name2)
@@ -97,6 +98,7 @@ public class Engine {
 			}
 		
 		MDS.run(dis,files);
+		
 		
 		return dis;
 	}
