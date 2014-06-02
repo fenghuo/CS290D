@@ -1,4 +1,9 @@
 package weibo;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
 import ch.usi.inf.sape.hac.*;
 import ch.usi.inf.sape.hac.dendrogram.*;
 import ch.usi.inf.sape.hac.experiment.*;
@@ -23,8 +28,41 @@ public class Clustering {
 		clusterer.cluster(dendrogramBuilder);
 		Dendrogram dendrogram = dendrogramBuilder.getDendrogram();
 		dendrogram.dump2();
+		
+		int n=8;
+		ArrayList<ArrayList<Integer>> clusters=dendrogram.merge(n);
+		
+		PrintWriter write = null;
+		try {
+			write = new PrintWriter(new BufferedWriter(new FileWriter(agglomerationMethod.toString()+"."+n+".cluster")));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		for(int i=0;i<clusters.size();i++)
+		{
+			for(int j=0;j<clusters.size();j++)
+			{
+				double dis=clusterDistance(clusters,i,j);
+				System.out.print(dis+"\t");
+				write.print(dis+"\t");
+			}
+			System.out.println();
+			write.println();
+		}
+		write.close();
 	}
 
+	private static double clusterDistance(ArrayList<ArrayList<Integer>> clusters,int a,int b){
+		double sum=0;
+		for(int i:clusters.get(a))
+			for(int j:clusters.get(b))
+				sum+=data[i][j];
+		sum/=clusters.get(a).size()*clusters.get(b).size();
+		return sum;
+	}
+	
 	private static AgglomerationMethod pickAgglomerationMethod() {
 		return new CentroidLinkage();
 		//return new CompleteLinkage();
