@@ -33,18 +33,10 @@ public class utils {
 	public final static int N = 4;
 	public static HashMap<String, Integer> keys = new HashMap<String, Integer>();
 
-<<<<<<< HEAD
-	// public final static String path =
-	// "E:\\Tech\\Java\\WorkSpace\\CS290D\\weiboevents\\weiboevents\\";
-	public final static String path = "E:\\Download\\weiboevents-trailer-json\\";
-=======
 //	public final static String path = "E:\\Tech\\Java\\WorkSpace\\CS290D\\weiboevents\\weiboevents\\";
-//	public final static String path = "E:\\Download\\weiboevents-trailer-json\\";
-	public final static String path = "/home/tianjiu/cs290dweiboevents/crawl-20140531/";
->>>>>>> 33240a53246d1f524486e4cec4dcd47eb731be94
+	public final static String path = "E:\\Download\\weiboevents-trailer-json\\";
+//	public final static String path = "/home/tianjiu/cs290dweiboevents/crawl-20140531/";
 
-	// public final static String path =
-	// "/home/tianjiu/cs290dweiboevents/crawl-20140531/";
 
 	public static void loadJson(Tree t, File file, int time) {
 		Tree tree = t;
@@ -222,10 +214,10 @@ public class utils {
 				PrintWriter write = new PrintWriter(new BufferedWriter(
 						new FileWriter(new File(name + ".serial"))));
 
-				for (Integer[]arr : output.serial)
+				for (int i=0;i<data.length;i++)
 				{
-					for(Integer i:arr)
-						write.print(i+",");
+					for(Integer d:output.serial[i])
+						write.print(d+",");
 					write.println();
 				}
 

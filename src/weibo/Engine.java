@@ -73,6 +73,7 @@ public class Engine {
 		ArrayList<Tree> trees = new ArrayList<Tree>();
 		String[] files = new String[Max + 10];
 		int[] count = new int[Max + 10];
+		Integer[][] serial = new Integer[Max + 10][];
 
 		for (File file : folder.listFiles()) {
 			if (!file.isDirectory()) {
@@ -91,6 +92,7 @@ public class Engine {
 					tree=tree.sample(n);
 				tree.sort();
 				tree.serial();
+				serial[trees.size()]=tree.serials;
 				
 				trees.add(tree);
 
@@ -116,7 +118,7 @@ public class Engine {
 
 		MDS.run(dis, files);
 
-		return new utils.Data(dis, files,count);
+		return new utils.Data(dis, files,count,serial);
 	}
 	//
 	// public static void showAll()
