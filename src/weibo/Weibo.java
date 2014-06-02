@@ -20,8 +20,8 @@ public class Weibo {
 		Engine.Max=3000;
 		
 		int treeSize=100;
-		int timeLimit=60*60;
-		boolean ignore=false;
+		int timeLimit=0;
+		boolean ignore=true;
 		boolean isSample=true;
 		
 		utils.Data data=null;
