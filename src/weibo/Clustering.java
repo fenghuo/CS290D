@@ -62,7 +62,7 @@ public class Clustering {
 
 		PrintWriter write = null;
 		try {
-			write = new PrintWriter(new BufferedWriter(new FileWriter(agglomerationMethod.toString()+"."+n+".cluster")));
+			write = new PrintWriter(new BufferedWriter(new FileWriter(agglomerationMethod.toString()+"."+clusters.size()+".cluster")));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
