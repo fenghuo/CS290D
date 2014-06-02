@@ -29,14 +29,14 @@ public class Weibo {
 		String name="cluster"+Engine.Max+"-"+treeSize+"-"+ignore+"-"+isSample;
 		
 		//int[][]dis=Engine.getPairDistance(utils.path, 100);
-		data=Engine.getPairDistance(utils.path, treeSize,timeLimit,ignore,isSample);
+		//data=Engine.getPairDistance(utils.path, treeSize,timeLimit,ignore,isSample);
 		
 		//utils.dump(data, "2.2000");
 		
 		//data=utils.readDump("1.100");
 		
-		utils.save(data,name);
-		//data=utils.readSave(name,Engine.Max+1);
+		//utils.save(data,name);
+		data=utils.readSave(name,Engine.Max+1);
 		
 		//MDS.run(data.data,data.name);
 
@@ -48,8 +48,7 @@ public class Weibo {
 		
 		//utils.print(data.data);
 	
-		
-		//Clustering.Hac(data);
+		Clustering.Hac(data);
 		
 		//Plot.Bar(MDS.run(data.data, data.name));
 		

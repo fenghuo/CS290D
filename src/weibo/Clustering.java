@@ -1,4 +1,6 @@
 package weibo;
+import java.util.ArrayList;
+
 import ch.usi.inf.sape.hac.*;
 import ch.usi.inf.sape.hac.dendrogram.*;
 import ch.usi.inf.sape.hac.experiment.*;
@@ -23,8 +25,28 @@ public class Clustering {
 		clusterer.cluster(dendrogramBuilder);
 		Dendrogram dendrogram = dendrogramBuilder.getDendrogram();
 		dendrogram.dump2();
+		ArrayList<ArrayList<Integer>> clusters=dendrogram.merge(16);
+		
+		for(int i=0;i<clusters.size();i++)
+		{
+			for(int j=0;j<clusters.size();j++)
+			{
+				double dis=clusterDistance(clusters,i,j);
+				System.out.print(dis+"\t");
+			}
+			System.out.println();
+		}
 	}
 
+	private static double clusterDistance(ArrayList<ArrayList<Integer>> clusters,int a,int b){
+		double sum=0;
+		for(int i:clusters.get(a))
+			for(int j:clusters.get(b))
+				sum+=data[i][j];
+		sum/=clusters.get(a).size()*clusters.get(b).size();
+		return sum;
+	}
+	
 	private static AgglomerationMethod pickAgglomerationMethod() {
 		return new CentroidLinkage();
 		//return new CompleteLinkage();
