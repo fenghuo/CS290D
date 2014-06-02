@@ -29,9 +29,37 @@ public class Clustering {
 		Dendrogram dendrogram = dendrogramBuilder.getDendrogram();
 		dendrogram.dump2();
 		
+		clusterer.setAgglomerationMethod(new AverageLinkage());
+		run(dendrogramBuilder,clusterer);
+		clusterer.setAgglomerationMethod(new CentroidLinkage());
+		run(dendrogramBuilder,clusterer);
+		clusterer.setAgglomerationMethod(new CompleteLinkage());
+		run(dendrogramBuilder,clusterer);
+		clusterer.setAgglomerationMethod(new MedianLinkage());
+		run(dendrogramBuilder,clusterer);
+		clusterer.setAgglomerationMethod(new SingleLinkage());
+		run(dendrogramBuilder,clusterer);
+		clusterer.setAgglomerationMethod(new WardLinkage());
+		run(dendrogramBuilder,clusterer);
+		clusterer.setAgglomerationMethod(new WeightedAverageLinkage());
+		run(dendrogramBuilder,clusterer);
+	
+	}
+
+	private static void run(DendrogramBuilder dendrogramBuilder,HierarchicalAgglomerativeClusterer clusterer){
+		clusterer.cluster(dendrogramBuilder);
+		Dendrogram dendrogram = dendrogramBuilder.getDendrogram();
+		dendrogram.dump2();
+
 		int n=4;
-		ArrayList<ArrayList<Integer>> clusters=dendrogram.merge(n);
-		
+		ArrayList<ArrayList<Integer>> clusters=null;
+		clusters=dendrogram.merge(n);
+		dump(clusters,clusterer.getAgglomerationMethod());
+	}
+	
+	private static void dump(ArrayList<ArrayList<Integer>> clusters,
+			Object agglomerationMethod){
+
 		PrintWriter write = null;
 		try {
 			write = new PrintWriter(new BufferedWriter(new FileWriter(agglomerationMethod.toString()+"."+n+".cluster")));
@@ -53,7 +81,7 @@ public class Clustering {
 		}
 		write.close();
 	}
-
+	
 	private static double clusterDistance(ArrayList<ArrayList<Integer>> clusters,int a,int b){
 		double sum=0;
 		for(int i:clusters.get(a))
