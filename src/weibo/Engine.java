@@ -68,6 +68,7 @@ public class Engine {
 		File folder = new File(dir);
 		ArrayList<Tree> trees = new ArrayList<Tree>();
 		String[] files = new String[Max + 10];
+		int[] count = new int[Max + 10];
 
 		for (File file : folder.listFiles()) {
 			if (!file.isDirectory()) {
@@ -81,6 +82,7 @@ public class Engine {
 					continue;
 
 				files[trees.size()] = file.getName();
+				count[trees.size()]=tree.lineCount;
 				trees.add(tree);
 
 				if (trees.size() > Max)
