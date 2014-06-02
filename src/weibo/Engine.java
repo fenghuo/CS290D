@@ -107,7 +107,7 @@ public class Engine {
 
 		MDS.run(dis, files);
 
-		return new utils.Data(dis, files);
+		return new utils.Data(dis, files,count);
 	}
 	//
 	// public static void showAll()

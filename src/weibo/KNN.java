@@ -28,7 +28,7 @@ public class KNN {
 				while(!kdata.isEmpty())
 					predict+=kdata.poll().count;
 				predict/=k;
-				err+=Math.pow((Math.log(data.count[test])-Math.log(predict)),2);
+				err+=Math.pow((Math.log10(data.count[test])-Math.log10(predict)),2);
 			}
 			
 			err/=(data.data.length/nFold);
