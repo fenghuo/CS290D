@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Vector;
@@ -199,6 +200,31 @@ public class utils {
 		
 	}
 	
+	public static void computeMDS(String name)
+	{
+		Data data=readSave(name);
+		HashMap<String,Integer> map=new HashMap<String,Integer>();
+		HashSet<Integer> trains=new HashSet<Integer> ();
+		HashSet<Integer> tests=new HashSet<Integer> ();
+		for(int i=0;i<data.name.length;i++)
+			map.put(data.name[i], i);
+		
+		Scanner in=new Scanner(System.in);
+		int train=in.nextInt();
+		int test=in.nextInt();
+
+		for(int i=0;i<train;i++)
+			trains.add(map.get(in.nextLine().trim()));
+		for(int i=0;i<test;i++)
+			tests.add(map.get(in.nextLine().trim()));
+		
+		int[][]newd=new int[train][train];
+		for(int i=0;i<data.data.length;i++)
+			for(int j=0;j<data.data.length;j++)
+			{
+				
+			}
+	}
 
 	public static Data readSave(String name)
 	{
@@ -259,9 +285,15 @@ public class utils {
 	public static class Data{
 		int[][]data;
 		String[] name;
+		int[] count;
 		public Data(int[][]d,String[] n){
 			this.data=d;
 			this.name=n;
+		}
+		public Data(int[][]d,String[] n,int[]c){
+			this.data=d;
+			this.name=n;
+			count=c;
 		}
 	}
 	

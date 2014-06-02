@@ -1,5 +1,7 @@
 package weibo;
 
+import java.util.Scanner;
+
 public class Weibo {
 
 	/**
@@ -11,7 +13,7 @@ public class Weibo {
 			
 		//Engine.getDistance(100, "3705342694877442.msgpack", "3705342694877442.msgpack");
 		
-		Engine.Max=20;
+		Engine.Max=100;
 		int treeSize=100;
 		int timeLimit=60*60;
 		boolean ignore=false;
@@ -26,11 +28,15 @@ public class Weibo {
 		
 		//data=utils.readDump("1.100");
 		
-		utils.save(data,"test");
+		//utils.save(data,"test");
 		
-		utils.print(data.data);
+		//utils.computeMDS(args[0]);
+		
+		KNN.run(data, 5, 10);
+		
+		//utils.print(data.data);
 	
-		Clustering.Hac(data);
+		//Clustering.Hac(data);
 		
 		return;
 	}
