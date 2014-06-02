@@ -5,7 +5,6 @@ import java.util.Scanner;
 import weibo.Engine;
 import weibo.KNN;
 import weibo.MDS;
-import weibo.utils;
 
 public class Weibo {
 
@@ -45,11 +44,14 @@ public class Weibo {
 		
 		//utils.computeMDS(args[0]);
 		
-		KNN.run(data, 1, 10);
+		//KNN.run(data,50, 10);
 		
 		//utils.print(data.data);
 	
+		
 		//Clustering.Hac(data);
+		
+		Plot.Bar(MDS.run(data.data, data.name));
 		
 		return;
 	}

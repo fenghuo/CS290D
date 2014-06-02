@@ -18,22 +18,22 @@ public class MDS {
 
 		double[][] output = MDSJ.classicalScaling(input);
 
-		PrintWriter write = null;
-		try {
-			write = new PrintWriter(new BufferedWriter(new FileWriter(new File(
-					"MDS"))));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		PrintWriter write = null;
+//		try {
+//			write = new PrintWriter(new BufferedWriter(new FileWriter(new File(
+//					"MDS"))));
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 
 		for (int i = 0; i < input.length; i++) {
 			String t = files[i] + "\t" + output[0][i] + "\t" + output[1][i];
 			System.out.println(t);
-			write.println(t);
+			//write.println(t);
 		}
 
-		write.close();
+		//write.close();
 		return output;
 	}
 }
