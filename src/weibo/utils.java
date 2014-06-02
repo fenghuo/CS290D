@@ -33,8 +33,8 @@ public class utils {
 	
 
 //	public final static String path = "E:\\Tech\\Java\\WorkSpace\\CS290D\\weiboevents\\weiboevents\\";
-//	public final static String path = "E:\\Download\\weiboevents-trailer-json\\";
-	public final static String path = "/home/tianjiu/cs290dweiboevents/crawl-20140531/";
+	public final static String path = "E:\\Download\\weiboevents-trailer-json\\";
+//	public final static String path = "/home/tianjiu/cs290dweiboevents/crawl-20140531/";
 
 	public static void loadJson(Tree t,File file,int time) {
 		Tree tree = t;
@@ -168,6 +168,7 @@ public class utils {
 	{
 		int[][]data=output.data;
 		String[] fname=output.name;
+		int[]count=output.count;
 		
 		try {
 			PrintWriter write= new PrintWriter(new BufferedWriter(new FileWriter(new File(name+".name"))));
@@ -180,7 +181,17 @@ public class utils {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		try {
+			PrintWriter write= new PrintWriter(new BufferedWriter(new FileWriter(new File(name+".count"))));
+
+			for(int i=0;i<data.length;i++)
+				write.println(count[i]);
+			write.close();
 		
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 		try {
 			PrintWriter write= new PrintWriter(new BufferedWriter(new FileWriter(new File(name+".distance"))));
 
@@ -200,9 +211,9 @@ public class utils {
 		
 	}
 	
-	public static void computeMDS(String name)
+	public static void computeMDS(String name,int n)
 	{
-		Data data=readSave(name);
+		Data data=readSave(name,n);
 		HashMap<String,Integer> map=new HashMap<String,Integer>();
 		HashSet<Integer> trains=new HashSet<Integer> ();
 		HashSet<Integer> tests=new HashSet<Integer> ();
@@ -226,28 +237,34 @@ public class utils {
 			}
 	}
 
-	public static Data readSave(String name)
+	public static Data readSave(String name,int n)
 	{
 		int[][]data=null;
 		String[]names=null;
+		int []count=null;
 		try {
 			Scanner inName = new Scanner(new File(name+".name"));
 			Scanner inDis = new Scanner(new File(name+".distance"));
-			int n=3167;
+			Scanner inCount = new Scanner(new File(name+".count"));
+			
 			data=new int[n][n];
 			names=new String[n];
+			count=new int[n];
 			for(int i=0;i<n;i++)
 				for(int j=0;j<n;j++)
 					data[i][j]=inDis.nextInt();
 			for(int i=0;i<n;i++)
 				names[i]=inName.nextLine().trim();
+			for(int i=0;i<n;i++)
+				count[i]=inCount.nextInt();
 			inName.close();
 			inDis.close();
+			inCount.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return new Data(data,names);
+		return new Data(data,names,count);
 		
 	}
 
@@ -283,9 +300,9 @@ public class utils {
 	}
 	
 	public static class Data{
-		int[][]data;
-		String[] name;
-		int[] count;
+		public int[][]data;
+		public String[] name;
+		public int[] count;
 		public Data(int[][]d,String[] n){
 			this.data=d;
 			this.name=n;

@@ -2,6 +2,11 @@ package weibo;
 
 import java.util.Scanner;
 
+import weibo.Engine;
+import weibo.KNN;
+import weibo.MDS;
+import weibo.utils;
+
 public class Weibo {
 
 	/**
@@ -12,22 +17,17 @@ public class Weibo {
 		//Engine.getDistanceMultiple(100,100,"3705342694877442.msgpack", "3705342694877442.msgpack");
 			
 		//Engine.getDistance(100, "3705342694877442.msgpack", "3705342694877442.msgpack");
+
+		Engine.Max=10;
 		
-<<<<<<< HEAD
-		Engine.Max=1000;
-=======
-<<<<<<< HEAD
-		Engine.Max=3000;
-=======
-		Engine.Max=100;
->>>>>>> e3b44df8d5970870019c2ba08cbb8ba78b0276a0
->>>>>>> 800291913ce93963bbfd33d5087de9fe709b4ac5
 		int treeSize=100;
 		int timeLimit=60*60;
 		boolean ignore=false;
 		boolean isSample=false;
 		
 		utils.Data data=null;
+		
+		String name="knn"+Engine.Max+"-"+treeSize+"-"+ignore+"-"+isSample;
 		
 		//int[][]dis=Engine.getPairDistance(utils.path, 100);
 		data=Engine.getPairDistance(utils.path, treeSize,timeLimit,ignore,isSample);
@@ -36,20 +36,17 @@ public class Weibo {
 		
 		//data=utils.readDump("1.100");
 		
-<<<<<<< HEAD
-		utils.save(data,"1000-100-false-false");
-		//data=utils.readSave("all-100-false-false");
+		utils.save(data,name);
+		data=utils.readSave(name,Engine.Max+1);
 		
 		MDS.run(data.data,data.name);
 
-=======
 		//utils.save(data,"test");
 		
 		//utils.computeMDS(args[0]);
 		
 		KNN.run(data, 5, 10);
 		
->>>>>>> e3b44df8d5970870019c2ba08cbb8ba78b0276a0
 		//utils.print(data.data);
 	
 		//Clustering.Hac(data);
