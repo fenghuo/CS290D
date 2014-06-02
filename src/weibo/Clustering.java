@@ -29,7 +29,7 @@ public class Clustering {
 		Dendrogram dendrogram = dendrogramBuilder.getDendrogram();
 		dendrogram.dump2();
 		
-		int n=8;
+		int n=4;
 		ArrayList<ArrayList<Integer>> clusters=dendrogram.merge(n);
 		
 		PrintWriter write = null;
