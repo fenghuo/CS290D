@@ -18,7 +18,7 @@ public class Weibo {
 			
 		//Engine.getDistance(100, "3705342694877442.msgpack", "3705342694877442.msgpack");
 
-		Engine.Max=10;
+		Engine.Max=1000;
 		
 		int treeSize=100;
 		int timeLimit=60*60;
@@ -30,22 +30,22 @@ public class Weibo {
 		String name="knn"+Engine.Max+"-"+treeSize+"-"+ignore+"-"+isSample;
 		
 		//int[][]dis=Engine.getPairDistance(utils.path, 100);
-		data=Engine.getPairDistance(utils.path, treeSize,timeLimit,ignore,isSample);
+		//data=Engine.getPairDistance(utils.path, treeSize,timeLimit,ignore,isSample);
 		
 		//utils.dump(data, "2.2000");
 		
 		//data=utils.readDump("1.100");
 		
-		utils.save(data,name);
+		//utils.save(data,name);
 		data=utils.readSave(name,Engine.Max+1);
 		
-		MDS.run(data.data,data.name);
+		//MDS.run(data.data,data.name);
 
 		//utils.save(data,"test");
 		
 		//utils.computeMDS(args[0]);
 		
-		KNN.run(data, 5, 10);
+		KNN.run(data, 1, 10);
 		
 		//utils.print(data.data);
 	

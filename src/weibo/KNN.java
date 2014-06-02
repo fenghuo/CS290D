@@ -26,9 +26,14 @@ public class KNN {
 						kdata.poll();
 				}
 				while(!kdata.isEmpty())
+				{
 					predict+=kdata.poll().count;
+					System.out.print(predict+" - ");
+				}
+				System.out.println();
 				predict/=k;
 				err+=Math.pow((Math.log10(data.count[test])-Math.log10(predict)),2);
+				System.out.println(predict+"\t"+data.count[test]);
 			}
 			
 			err/=(data.data.length/nFold);
