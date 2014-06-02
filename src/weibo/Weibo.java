@@ -17,16 +17,16 @@ public class Weibo {
 			
 		//Engine.getDistance(100, "3705342694877442.msgpack", "3705342694877442.msgpack");
 
-		Engine.Max=1;
+		Engine.Max=3000;
 		
 		int treeSize=100;
 		int timeLimit=60*60;
-		boolean ignore=true;
-		boolean isSample=true;
+		boolean ignore=false;
+		boolean isSample=false;
 		
 		utils.Data data=null;
 		
-		String name="cluster"+Engine.Max+"-"+treeSize+"-"+ignore+"-"+isSample;
+		String name="predict"+Engine.Max+"-"+treeSize+"-"+ignore+"-"+isSample;
 		
 		//int[][]dis=Engine.getPairDistance(utils.path, 100);
 		data=Engine.getPairDistance(utils.path, treeSize,timeLimit,ignore,isSample);
