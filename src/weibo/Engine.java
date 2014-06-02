@@ -29,23 +29,27 @@ public class Engine {
 		return (Distance.edit(s1, s2));
 	}
 
+	public static int getDistance(Tree tree1, Tree tree2) {
+
+		Integer[] s1 = tree1.serials;
+		Integer[] s2 = tree2.serials;;
+
+		return (Distance.edit(s1, s2));
+		// return Distance.LCS(s1, s2);
+	}
+	
 	public static int getDistance(int n, Tree tree1, Tree tree2,
 			boolean isSample) {
-		Tree t1 = null, t2 = null;
-		if (isSample) {
 
-			t1 = tree1.sample(n);
-			t1.sort();
-
-			t2 = tree2.sample(n);
-			t2.sort();
-
-		} else {
-			t1 = tree1;
-			t2 = tree2;
+		if(isSample){
+			tree1=tree1.sample(n);
+			tree2=tree2.sample(n);
 		}
-		Integer[] s1 = t1.serial();
-		Integer[] s2 = t2.serial();
+		tree1.sort();
+		tree2.sort();
+		
+		Integer[] s1 = tree1.serials;
+		Integer[] s2 = tree2.serials;;
 
 		return (Distance.edit(s1, s2));
 		// return Distance.LCS(s1, s2);
@@ -83,6 +87,11 @@ public class Engine {
 
 				files[trees.size()] = file.getName();
 				count[trees.size()]=tree.lineCount;
+				if(isSample)
+					tree=tree.sample(n);
+				tree.sort();
+				tree.serial();
+				
 				trees.add(tree);
 
 				if (trees.size() > Max)
@@ -94,7 +103,7 @@ public class Engine {
 
 		for (int i = 0; i < trees.size(); i++) {
 			for (int j = i; j < trees.size(); j++)
-				dis[i][j] = getDistance(n, trees.get(i), trees.get(j),isSample);
+				dis[i][j] = getDistance(trees.get(i), trees.get(j));
 			System.out.println(i + "/" + trees.size());
 		}
 		for (int i = 0; i < trees.size(); i++)

@@ -209,6 +209,18 @@ public class Tree{
 		return serials;
 		
 	}
+	
+	public Integer[] serial(Node root)
+	{
+		LinkedList<Integer> list=new LinkedList<Integer>();
+		
+		serial(root,list);
+		
+		serials=list.toArray(new Integer[list.size()]);
+		
+		return serials;
+	}
+		
 
 	public void printSerial()
 	{
