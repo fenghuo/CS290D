@@ -2,6 +2,7 @@ package weibo;
 
 import javax.swing.JFrame;
 
+/*
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
@@ -11,7 +12,7 @@ import org.math.plot.Plot2DPanel;
 
 public class Plot {
 	public static void Bar(double[][]data){
-        
+
 	    XYSeriesCollection result = new XYSeriesCollection();
 	    XYSeries series = new XYSeries("Plot");
 	    for (int i = 0; i <= 100; i++) {
@@ -39,5 +40,7 @@ public class Plot {
 		  JFrame frame = new JFrame("a plot panel");
 		  frame.setContentPane(plot);
 		  frame.setVisible(true);
+	
 	}
 }
+*/
