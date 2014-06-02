@@ -27,18 +27,18 @@ public class Clustering {
 		HierarchicalAgglomerativeClusterer clusterer = new HierarchicalAgglomerativeClusterer(experiment, dissimilarityMeasure, agglomerationMethod);
 		clusterer.cluster(dendrogramBuilder);
 		Dendrogram dendrogram = dendrogramBuilder.getDendrogram();
-		dendrogram.dump2();
+	//	dendrogram.dump2();
 		
 		clusterer.setAgglomerationMethod(new AverageLinkage());
-		run(dendrogramBuilder,clusterer);
+//		run(dendrogramBuilder,clusterer);
 		clusterer.setAgglomerationMethod(new CentroidLinkage());
-		run(dendrogramBuilder,clusterer);
+//		run(dendrogramBuilder,clusterer);
 		clusterer.setAgglomerationMethod(new CompleteLinkage());
-		run(dendrogramBuilder,clusterer);
+//		run(dendrogramBuilder,clusterer);
 		clusterer.setAgglomerationMethod(new MedianLinkage());
-		run(dendrogramBuilder,clusterer);
+//		run(dendrogramBuilder,clusterer);
 		clusterer.setAgglomerationMethod(new SingleLinkage());
-		run(dendrogramBuilder,clusterer);
+//		run(dendrogramBuilder,clusterer);
 		clusterer.setAgglomerationMethod(new WardLinkage());
 		run(dendrogramBuilder,clusterer);
 		clusterer.setAgglomerationMethod(new WeightedAverageLinkage());
@@ -49,7 +49,7 @@ public class Clustering {
 	private static void run(DendrogramBuilder dendrogramBuilder,HierarchicalAgglomerativeClusterer clusterer){
 		clusterer.cluster(dendrogramBuilder);
 		Dendrogram dendrogram = dendrogramBuilder.getDendrogram();
-		dendrogram.dump2();
+		//dendrogram.dump2();
 
 		int n=4;
 		ArrayList<ArrayList<Integer>> clusters=null;
