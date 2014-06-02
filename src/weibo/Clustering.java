@@ -1,4 +1,7 @@
 package weibo;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import ch.usi.inf.sape.hac.*;
@@ -25,7 +28,17 @@ public class Clustering {
 		clusterer.cluster(dendrogramBuilder);
 		Dendrogram dendrogram = dendrogramBuilder.getDendrogram();
 		dendrogram.dump2();
-		ArrayList<ArrayList<Integer>> clusters=dendrogram.merge(16);
+		
+		int n=8;
+		ArrayList<ArrayList<Integer>> clusters=dendrogram.merge(n);
+		
+		PrintWriter write = null;
+		try {
+			write = new PrintWriter(new BufferedWriter(new FileWriter(agglomerationMethod.toString()+"."+n+".cluster")));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		for(int i=0;i<clusters.size();i++)
 		{
@@ -33,9 +46,12 @@ public class Clustering {
 			{
 				double dis=clusterDistance(clusters,i,j);
 				System.out.print(dis+"\t");
+				write.print(dis+"\t");
 			}
 			System.out.println();
+			write.println();
 		}
+		write.close();
 	}
 
 	private static double clusterDistance(ArrayList<ArrayList<Integer>> clusters,int a,int b){

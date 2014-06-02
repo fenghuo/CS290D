@@ -53,7 +53,7 @@ public final class Dendrogram {
 				getNodes(node.getRight(),res,n);
 				getNodes(node.getLeft(),res,n);
 			}
-			else if(node.getObservationCount()<=n && node.getObservationCount()>10){
+			else if(node.getObservationCount()<=n && node.getObservationCount()>5){
 				ArrayList<Integer> cluster=new ArrayList<Integer>();
 				get(node,cluster);
 				res.add(cluster);
