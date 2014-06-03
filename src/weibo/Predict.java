@@ -44,6 +44,7 @@ public class Predict {
 
 		for (Integer[] d : res) {
 			min = Integer.MAX_VALUE;
+			avgd=0;
 			if (d.length < 3) {
 				sum += d.length;
 				continue;
@@ -66,12 +67,14 @@ public class Predict {
 			// System.out.println(min + "\t" + count);
 
 		}
-		// avgd/=res.size();
-		//System.out.println(avgd + "\t" + sum);
-		//System.out.println("P:" + ((sum * d1 + c1 * avgd) / (avgd + d1)));
-		System.out.println("P:" + ((sum  + c1 ) / 2));
+		//avgd/=res.size();
+		avgd++;
+		d1++;
+		//System.out.println(avgd + "\t" + d1);
+		System.out.println("P:" + ((sum * d1 + c1 * avgd) / (avgd + d1)));
+		//System.out.println("P:" + ((sum  + c1 ) / 2));
 
-		return Math.pow(Math.log10((sum+c1)/2)-Math.log10(data.count[n]),2);
+		return Math.pow(Math.log10((sum*d1+c1*avgd)/(d1+avgd))-Math.log10(data.count[n]),2);
 	}
 
 	private static ArrayList<Integer[]> split(Integer[] data) {
