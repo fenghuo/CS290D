@@ -25,22 +25,15 @@ public class Predict {
 		System.out.println("Data : " + data.count[n]);
 		
 		int min = Integer.MAX_VALUE;
-		int count = 0;
-		for (int i = 0; i < data.data.length; i++) {
-			if (i == n)
-				continue;
-			int dis = Distance.edit(data.serial[i], data.serial[n]);
-			if (dis < min) {
-				min = dis;
-				count = data.count[i];
-			}
-		}
+		double count = 0;
 		//System.out.println(min + "--\t" + count);
 
 		double sum = 0;
 		double avgd = 0;
 		double d1 = min;
 		double c1=count;
+		
+		c1=KNN.predict(10, data, n, data.serial[n]);
 
 		for (Integer[] d : res) {
 			min = Integer.MAX_VALUE;
@@ -49,32 +42,23 @@ public class Predict {
 				sum += d.length;
 				continue;
 			}
+			
+			count=KNN.predict(10, data, n, d);
 
-			for (int i = 0; i < data.data.length; i++) {
-				if (i == n)
-					continue;
-
-				int dis = Distance.edit(data.serial[i], d);
-
-				if (dis < min) {
-					min = dis;
-					count = data.count[i];
-				}
-			}
-
-			sum += count;
+			sum += Math.pow(10,count);
 			avgd += min;
-			// System.out.println(min + "\t" + count);
+			//System.out.println(min + "\t" + count);
 
 		}
 		//avgd/=res.size();
 		avgd++;
 		d1++;
-		//System.out.println(avgd + "\t" + d1);
-		System.out.println("P:" + ((sum * d1 + c1 * avgd) / (avgd + d1)));
-		//System.out.println("P:" + ((sum  + c1 ) / 2));
+		sum=Math.log10(sum);
+		System.out.println(Math.pow(10,sum) + "\t" + Math.pow(10,c1));
+		//System.out.println("P:" + ((sum * d1 + c1 * avgd) / (avgd + d1)));
+		System.out.println("P:" + (Math.pow(10,(sum  + c1 ) / 2)));
 
-		return Math.pow(Math.log10((sum*d1+c1*avgd)/(d1+avgd))-Math.log10(data.count[n]),2);
+		return Math.pow((sum+c1)/2-Math.log10(data.count[n]),2);
 	}
 
 	private static ArrayList<Integer[]> split(Integer[] data) {

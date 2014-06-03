@@ -33,8 +33,8 @@ public class utils {
 	public static HashMap<String, Integer> keys = new HashMap<String, Integer>();
 
 //	public final static String path = "E:\\Tech\\Java\\WorkSpace\\CS290D\\weiboevents\\weiboevents\\";
-//	public final static String path = "E:\\Download\\weiboevents-trailer-json\\";
-	public final static String path = "/home/tianjiu/cs290dweiboevents/crawl-20140531/";
+	public final static String path = "E:\\Download\\weiboevents-trailer-json\\";
+//	public final static String path = "/home/tianjiu/cs290dweiboevents/crawl-20140531/";
 
 
 	public static void loadJson(Tree t, File file, int time) {
