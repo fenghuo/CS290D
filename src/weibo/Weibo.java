@@ -17,26 +17,28 @@ public class Weibo {
 			
 		//Engine.getDistance(100, "3705342694877442.msgpack", "3705342694877442.msgpack");
 
-		Engine.Max=3000;
+		Engine.Max=1000;
 		
 		int treeSize=100;
 		int timeLimit=60*60;
-		boolean ignore=false;
+		boolean ignore=true;
 		boolean isSample=false;
 		
 		utils.Data data=null;
 		
 		String name="predict"+Engine.Max+"-"+treeSize+"-"+ignore+"-"+isSample;
 		
+		int test=1000;
+		
 		//int[][]dis=Engine.getPairDistance(utils.path, 100);
-		data=Engine.getPairDistance(utils.path, treeSize,timeLimit,ignore,isSample);
+		//data=Engine.getPairDistance(utils.path, treeSize,timeLimit,ignore,isSample);
 		
 		//utils.dump(data, "2.2000");
 		
 		//data=utils.readDump("1.100");
 		
-		utils.save(data,name);
-		//data=utils.readSave(name,Engine.Max+1);
+		//utils.save(data,name);
+		data=utils.readSave(name,test);//Engine.Max+1);
 		
 		//MDS.run(data.data,data.name);
 
@@ -48,6 +50,11 @@ public class Weibo {
 		
 		//utils.print(data.data);
 	
+		//for(int i=0;i<test;i++)
+		//	System.out.println(data.count[i]);
+		
+		Predict.run(data);
+		
 		//Clustering.Hac(data);
 		
 		//Plot.Bar(MDS.run(data.data, data.name));
