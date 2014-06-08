@@ -43,6 +43,7 @@ public class Predict {
 		
 		for(int i=0;i<data.data.length;i++){
 			run(data,i);
+			System.out.println(i);
 		}
 		
 	}
