@@ -53,8 +53,8 @@ public class Weibo {
 		//for(int i=0;i<test;i++)
 		//	System.out.println(data.count[i]);
 		
-		Predict.run(data);
-		
+		//Predict.run(data);
+		Predict.check(data);
 		//Clustering.Hac(data);
 		
 		//Plot.Bar(MDS.run(data.data, data.name));

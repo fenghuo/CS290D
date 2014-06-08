@@ -55,7 +55,13 @@ public class KNN {
 	}
 
 	public static double predict(int k, utils.Data data, int n, Integer[] d) {
+		return predict2(k,data,n,d).predict;
+	}
+	
+	public static Result predict2(int k, utils.Data data, int n, Integer[] d) {
 
+		if(k<1)k=1;
+		
 		Comparator<Data> com = new Comparator<Data>() {
 			@Override
 			public int compare(Data arg0, Data arg1) {
@@ -68,6 +74,8 @@ public class KNN {
 		PriorityQueue<Data> kdata = new PriorityQueue<Data>(1, com);
 		double predict = 0;
 
+		double distance=0;
+		
 		for (int train = 0; train < data.data.length; train++) {
 			if (train == n)
 				continue;
@@ -77,12 +85,26 @@ public class KNN {
 				kdata.poll();
 		}
 		while (!kdata.isEmpty()) {
-			predict += Math.log10(kdata.poll().count);
+			Data re=kdata.poll();
+			predict += Math.log10(re.count);
+			distance+=re.dis;
 		}
 		predict /= k;
-		return predict;
+		distance/=k;
+		
+		return new Result(predict,distance);
 	}
 
+	public static class Result{
+		public double predict;
+		public double distance;
+		
+		public Result(double a,double b){
+			predict=a;
+			distance=b;
+		}
+	}
+	
 	private static class Data {
 
 		public int dis;
