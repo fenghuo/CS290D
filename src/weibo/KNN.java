@@ -139,7 +139,7 @@ public class KNN {
 			pre[m-1]/=m;
 			dis[m-1]/=m;
 			
-			ret+=pre[m-1]+"\t"+dis[m-1];
+			ret+=pre[m-1]+"\t"+dis[m-1]+"\t";
 		}
 		
 		return ret;
