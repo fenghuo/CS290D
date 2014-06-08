@@ -28,7 +28,7 @@ public class Weibo {
 		
 		String name="predict"+Engine.Max+"-"+treeSize+"-"+ignore+"-"+isSample;
 		
-		int test=1000;
+		int test=10;
 		
 		//int[][]dis=Engine.getPairDistance(utils.path, 100);
 		//data=Engine.getPairDistance(utils.path, treeSize,timeLimit,ignore,isSample);

@@ -11,7 +11,7 @@ public class KNN {
 			@Override
 			public int compare(Data arg0, Data arg1) {
 				// TODO Auto-generated method stub
-				return -arg0.dis + arg1.dis;
+				return (int) (-arg0.dis + arg1.dis);
 			}
 
 		};
@@ -66,7 +66,7 @@ public class KNN {
 			@Override
 			public int compare(Data arg0, Data arg1) {
 				// TODO Auto-generated method stub
-				return -arg0.dis + arg1.dis;
+				return (int) (-arg0.dis + arg1.dis);
 			}
 
 		};
@@ -87,7 +87,7 @@ public class KNN {
 		while (!kdata.isEmpty()) {
 			Data re=kdata.poll();
 			predict += Math.log10(re.count);
-			distance+=re.dis;
+			distance+=re.dis/d.length;
 		}
 		predict /= k;
 		distance/=k;
@@ -95,6 +95,57 @@ public class KNN {
 		return new Result(predict,distance);
 	}
 
+
+	public static String predictDetail(int k, utils.Data data, int n, Integer[] d) {
+
+		if(k<1)k=1;
+		
+		Comparator<Data> com = new Comparator<Data>() {
+			@Override
+			public int compare(Data arg0, Data arg1) {
+				// TODO Auto-generated method stub
+				return (int) (-arg0.dis + arg1.dis);
+			}
+
+		};
+		
+		double[]pre=new double[k];
+		double[]dis=new double[k];
+
+		PriorityQueue<Data> kdata = new PriorityQueue<Data>(1, com);
+		double predict = 0;
+
+		String ret="";
+		
+		double distance=0;
+		
+		int m=0;
+		
+		for (int train = 0; train < data.data.length; train++) {
+			if (train == n)
+				continue;
+			kdata.add(new Data(Distance.edit(data.serial[train], d),
+					data.count[train]));
+			if (kdata.size() > k)
+				kdata.poll();
+		}
+		while (!kdata.isEmpty()) {
+			Data re=kdata.poll();
+			predict += Math.log10(re.count);
+			distance+=re.dis/d.length;
+			pre[m]=Math.log(re.count)+(m>0?pre[m-1]:0);
+			dis[m]=re.dis/d.length+(m>0?dis[m-1]:0);
+			m++;
+			pre[m-1]/=m;
+			dis[m-1]/=m;
+			
+			ret+=pre[m-1]+"\t"+dis[m-1];
+		}
+		
+		return ret;
+	}
+
+	
 	public static class Result{
 		public double predict;
 		public double distance;
@@ -107,7 +158,7 @@ public class KNN {
 	
 	private static class Data {
 
-		public int dis;
+		public double dis;
 		public int count;
 
 		public Data(int a, int b) {

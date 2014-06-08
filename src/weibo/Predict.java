@@ -15,7 +15,7 @@ public class Predict {
 	
 	public static void init(){
 		try {
-			write=new PrintWriter(new FileWriter(new File("knn-test-"+new Date().getMinutes()),true));
+			write=new PrintWriter(new FileWriter(new File("knn-test-"+new Date().getHours()+"."+new Date().getMinutes()),true));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -34,7 +34,6 @@ public class Predict {
 		}
 		err/=n;
 		
-		write.close();
 	}
 	
 	public static void check(utils.Data data){
@@ -45,7 +44,8 @@ public class Predict {
 			run(data,i);
 			System.out.println(i);
 		}
-		
+
+		write.close();
 	}
 
 	private static double run(Data data, int n) {
@@ -64,8 +64,10 @@ public class Predict {
 		double c1=count;
 		
 //		c1=KNN.predict(10, data, n, data.serial[n]);
-		KNN.Result re=KNN.predict2(10, data, n, data.serial[n]);
+		//KNN.Result re=KNN.predict2(10, data, n, data.serial[n]);
 
+		String ret=KNN.predictDetail(10, data, n, data.serial[n]);
+		
 //		for (Integer[] d : res){
 //			
 //			min = Integer.MAX_VALUE;
@@ -92,7 +94,9 @@ public class Predict {
 
 		//write.println(Math.log10(data.count[n])+"\t"+c1+"\t"+sum);
 		
-		write.println((Math.log10(data.count[n])+"\t"+re.predict+"\t"+re.distance));
+		//write.println(data.name[n]+"\t"+(Math.log10(data.count[n])+"\t"+re.predict+"\t"+re.distance));
+		
+		write.println(data.name[n]+"\t"+(Math.log10(data.count[n])+"\t\t"+ret));
 		
 		return Math.pow((sum+c1)/2-Math.log10(data.count[n]),2);
 	}
